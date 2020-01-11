@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="icones/projetor.ico">
+    <title>Aluguel de Projetores</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/carousel.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+    <style type="text/css">
+      * {margin: 0; padding: 0px; font-family:Tahoma;}
+        #divCenter { 
+        margin-top: 100px;
+        
+        position: center center; 
+        top: 15%; 
+
+      }
+      #footer_global{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    }
+    #footer{
+      background:white;
+      border-radius: 70px 70px 70px 70px;
+    color:black;
+    font-style: bold;
+    width: 220px;
+    height: 30px;
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: 0%;
+    text-align: center;
+     
+    }
+    
+    #body{
+      background-image:url("fotos/chuvaP.png");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+
+
+    }
+    #formulario{
+      border:10px;
+      border-radius: 30px 30px 30px 30px;
+      border-top-width: 1px;
+      border-right-width: 1px;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+    border-bottom-style: solid;
+    border-top-color: black;
+    border-right-color: black;
+    border-bottom-color: black;
+    border-left-color: black;
+    }
+    .btnn{
+
+      margin-top: 25px;
+  font-weight: bold;
+  padding: 15px;
+  width: 140px;
+  float: left;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-bottom-style: solid;
+  border-top-color: black;
+  border-right-color: black;
+  border-bottom-color: black;
+  border-left-color: black;
+  color: white;
+  background-color: #48B258;
+  margin-bottom: center;
+  border-radius: 20px 20px 20px 20px;
+  }
+  .btnn:hover{
+  color: white;
+  background-color: darkgreen;
+  /*CSS 3*/
+  border-radius: 20px 20px 20px 20px;
+  }
+    
+    </style>
+  </head>
+  <body id="body">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="Login.html" style="color:#48B258">Logoff</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="principal.html">VOLTAR AO MENU PRINCIPAL<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
+          <input type="image" src="icones/lupa.png" width="35" height="35">
+        </form>
+
+      </div>
+    </nav>
+    <div class="container" id="divCenter">
+      <fieldset>
+      <form id="formulario" class="form-signin" style="background-color:white" >
+        
+        <h2 class="form-signin-heading" style="color:#2A2E2A">Cadastrar Projetores</h2>
+        <label for="inputNumero" class="label" style="color:#2A2E2A">Número do Projetor:</label>
+        <input type="text" id="inputPassword" class="form-control" placeholder="Número" required autofocus>
+        <label for="inputTombo" class="label" style="color:#2A2E2A">Tombo:</label>
+        <input type="text" id="inputEmail" class="form-control" placeholder="Tombo" required>
+        <label for="inputSerie" class="label" style="color:#2A2E2A">Série:</label>
+        <input type="text" id="inputSerie" class="form-control" placeholder="Número de Série" required >
+      
+         
+        <table style="width:100%">
+
+        <th><button  class="btnn" type="button" >Cadastrar</button></th>
+        <th><a href="listProjetor.html"><button  class="btnn" type="button" >Listar</button></a></th>
+        </table>
+
+      </form>
+      </fieldset>
+
+    </div> 
+    <div id="footer_global"class="container marketing">
+      <footer>
+        <div id="footer">
+        <p>&copy; 2019 IFMA, Inc. &middot; Termos</p>
+      </div>
+      </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script src="js/vendor/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/vendor/holder.min.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

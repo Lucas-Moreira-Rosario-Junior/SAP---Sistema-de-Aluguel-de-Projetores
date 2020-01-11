@@ -1,0 +1,33 @@
+
+table {
+
+  border-collapse: collapse;
+  width: 80em;
+  border: 1px solid #666;
+}
+thead {
+  background: #ccc url(https://www.devfuria.com.br/html-css/tabelas/bar.gif) repeat-x left center;
+  border-top: 1px solid #a5a5a5;
+  border-bottom: 1px solid #a5a5a5;
+}
+caption{
+  color:black;
+}
+tr:hover {
+  background-color: #489AD8;
+  color: black;
+}
+thead tr:hover {
+  background-color: #0FC5E2;
+  color: black;
+}
+tr:nth-child(even) {
+    background-color: #edf5ff;
+}
+th {
+  font-weight: normal;
+  text-align: left;
+}
+th, td {
+  padding: 0.3em 1em;
+}

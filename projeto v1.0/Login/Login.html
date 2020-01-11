@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="icones/projetor.ico">
+    <style type="text/css">
+    	* {margin: 0; padding: 0; font-family:Tahoma;}
+        #divCenter { 
+        width: 400px; 
+        height: 150px; 
+        left: 50%; 
+        margin: -130px 0 0 -210px; 
+        padding:10px;
+        position: absolute; 
+        top: 30%; 
+
+    }
+    #formulario{
+    	border-radius: 30px 30px 30px 30px;
+    }
+  	.btnn{
+	font-weight: bold;
+	padding: 15px;
+	width: 140px;
+	float: left;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-bottom-style: solid;
+	border-top-color: #48B258;
+	border-right-color: #48B258;
+	border-bottom-color: #48B258;
+	border-left-color: #48B258;
+	color: white;
+	background-color: #48B258;
+	margin-bottom: center;
+	border-radius: 20px 20px 20px 20px;
+	}
+	.btnn:hover{
+	color: white;
+	background-color: darkgreen;
+	/*CSS 3*/
+	border-radius: 20px 20px 20px 20px;
+	}
+  	
+  </style>
+    <title>Aluguel de Projetores</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+  </head>
+  
+  <body>
+
+    <div class="container" id="divCenter">
+
+      <form id="formulario" class="form-signin" style="background-color:white" >
+      	
+        <h2 class="form-signin-heading" style="color:#2A2E2A">Faça o seu Login</h2>
+        <label for="inputMatricula" class="label" style="color:#2A2E2A">Matrícula:</label>
+        <input type="text" id="inputMatricula" class="form-control" placeholder="Número de Matrícula" required autofocus>
+        <label for="inputPassword" class="label" style="color:#2A2E2A">Senha:</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me" style="color:#2A2E2A"> Lembre de Mim
+          </label>
+        </div>
+        <table style="width:100%">
+
+    	<th><a href="Principal.html"><button  class="btnn" type="button">Acessar</button></a></th>
+    	<th><button  class="btnn" type="button" >Cadastrar</button></th> 
+    	
+        </table>
+
+      </form>
+
+    </div> 
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

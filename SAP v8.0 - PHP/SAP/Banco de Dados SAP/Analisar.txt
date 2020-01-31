@@ -1,0 +1,204 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+-- -----------------------------------------------------
+-- Schema produtos
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema produtos
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `produtos` DEFAULT CHARACTER SET utf8mb4 ;
+-- -----------------------------------------------------
+-- Schema sap
+-- -----------------------------------------------------
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Professor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Professor` (
+  `MatriculaProfessor` VARCHAR(50) NOT NULL,
+  `nomeProfessor` VARCHAR(100) NOT NULL,
+  `telefoneProfessor` VARCHAR(45) NULL,
+  `emailProfessor` VARCHAR(50) NOT NULL,
+  `senhaProfessor` VARCHAR(45) NOT NULL,
+  `departamento` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`MatriculaProfessor`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Projetor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Projetor` (
+  `idProjetor` INT NOT NULL,
+  `Tombo` VARCHAR(45) NOT NULL,
+  `Serie` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idProjetor`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Funcionario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Funcionario` (
+  `MatriculaFuncionario` INT NOT NULL,
+  `nomeFuncionario` VARCHAR(105) NOT NULL,
+  `emailFuncionario` VARCHAR(60) NOT NULL,
+  `senhaFuncionario` VARCHAR(50) NOT NULL,
+  `telefoneFuncionario` VARCHAR(30) NULL,
+  PRIMARY KEY (`MatriculaFuncionario`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Gerente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Gerente` (
+  `MatriculaGerente` INT NOT NULL,
+  `nomeGerente` VARCHAR(105) NOT NULL,
+  `telefoneGerente` VARCHAR(35) NULL,
+  `senhaGerente` VARCHAR(20) NOT NULL,
+  `emailGerente` VARCHAR(65) NOT NULL,
+  PRIMARY KEY (`MatriculaGerente`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Servidor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Servidor` (
+  `MatriculaServidor` INT NOT NULL,
+  `nomeServidor` VARCHAR(105) NOT NULL,
+  `telefoneServidor` VARCHAR(35) NOT NULL,
+  `senhaServidor` VARCHAR(25) NOT NULL,
+  `emailServidor` VARCHAR(65) NOT NULL,
+  `setorServidor` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`MatriculaServidor`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`alugarEdevolver`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`alugarEdevolver` (
+  `idAluguel` INT NOT NULL,
+  `Funcionario_MatriculaFuncionario` INT NOT NULL,
+  `Projetor_idProjetor` INT NOT NULL,
+  `Professor_MatriculaProfessor` VARCHAR(50) NOT NULL,
+  `horarioRetirar` TIME NOT NULL,
+  `horarioDevolver` TIME NOT NULL,
+  `Servidor_MatriculaServidor` INT NOT NULL,
+  `Gerente_MatriculaGerente` INT NOT NULL,
+  `dataAluguel` DATE NOT NULL,
+  PRIMARY KEY (`idAluguel`),
+  INDEX `fk_alugarEdevolver_Funcionario_idx` (`Funcionario_MatriculaFuncionario` ASC) VISIBLE,
+  INDEX `fk_alugarEdevolver_Projetor1_idx` (`Projetor_idProjetor` ASC) VISIBLE,
+  INDEX `fk_alugarEdevolver_Professor1_idx` (`Professor_MatriculaProfessor` ASC) VISIBLE,
+  INDEX `fk_alugarEdevolver_Servidor1_idx` (`Servidor_MatriculaServidor` ASC) VISIBLE,
+  INDEX `fk_alugarEdevolver_Gerente1_idx` (`Gerente_MatriculaGerente` ASC) VISIBLE,
+  CONSTRAINT `fk_alugarEdevolver_Funcionario`
+    FOREIGN KEY (`Funcionario_MatriculaFuncionario`)
+    REFERENCES `mydb`.`Funcionario` (`MatriculaFuncionario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_alugarEdevolver_Projetor1`
+    FOREIGN KEY (`Projetor_idProjetor`)
+    REFERENCES `mydb`.`Projetor` (`idProjetor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_alugarEdevolver_Professor1`
+    FOREIGN KEY (`Professor_MatriculaProfessor`)
+    REFERENCES `mydb`.`Professor` (`MatriculaProfessor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_alugarEdevolver_Servidor1`
+    FOREIGN KEY (`Servidor_MatriculaServidor`)
+    REFERENCES `mydb`.`Servidor` (`MatriculaServidor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_alugarEdevolver_Gerente1`
+    FOREIGN KEY (`Gerente_MatriculaGerente`)
+    REFERENCES `mydb`.`Gerente` (`MatriculaGerente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Reservar`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Reservar` (
+  `idReservar` INT NOT NULL AUTO_INCREMENT,
+  `horarioRetirarRes` TIME NOT NULL,
+  `horarioDevolverRes` TIME NOT NULL,
+  `dataReserva` DATE NOT NULL,
+  `Funcionario_MatriculaFuncionario` INT NOT NULL,
+  `Gerente_MatriculaGerente` INT NOT NULL,
+  `Servidor_MatriculaServidor` INT NOT NULL,
+  `Projetor_idProjetor` INT NOT NULL,
+  `Professor_MatriculaProfessor` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`idReservar`, `Funcionario_MatriculaFuncionario`, `Gerente_MatriculaGerente`, `Servidor_MatriculaServidor`, `Projetor_idProjetor`, `Professor_MatriculaProfessor`),
+  INDEX `fk_Reservar_Funcionario1_idx` (`Funcionario_MatriculaFuncionario` ASC) VISIBLE,
+  INDEX `fk_Reservar_Gerente1_idx` (`Gerente_MatriculaGerente` ASC) VISIBLE,
+  INDEX `fk_Reservar_Servidor1_idx` (`Servidor_MatriculaServidor` ASC) VISIBLE,
+  INDEX `fk_Reservar_Projetor1_idx` (`Projetor_idProjetor` ASC) VISIBLE,
+  INDEX `fk_Reservar_Professor1_idx` (`Professor_MatriculaProfessor` ASC) VISIBLE,
+  CONSTRAINT `fk_Reservar_Funcionario1`
+    FOREIGN KEY (`Funcionario_MatriculaFuncionario`)
+    REFERENCES `mydb`.`Funcionario` (`MatriculaFuncionario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Reservar_Gerente1`
+    FOREIGN KEY (`Gerente_MatriculaGerente`)
+    REFERENCES `mydb`.`Gerente` (`MatriculaGerente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Reservar_Servidor1`
+    FOREIGN KEY (`Servidor_MatriculaServidor`)
+    REFERENCES `mydb`.`Servidor` (`MatriculaServidor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Reservar_Projetor1`
+    FOREIGN KEY (`Projetor_idProjetor`)
+    REFERENCES `mydb`.`Projetor` (`idProjetor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Reservar_Professor1`
+    FOREIGN KEY (`Professor_MatriculaProfessor`)
+    REFERENCES `mydb`.`Professor` (`MatriculaProfessor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+USE `produtos` ;
+
+-- -----------------------------------------------------
+-- Table `produtos`.`produto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `produtos`.`produto` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(255) NOT NULL,
+  `preco` VARCHAR(50) NOT NULL,
+  `ativo` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 13
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

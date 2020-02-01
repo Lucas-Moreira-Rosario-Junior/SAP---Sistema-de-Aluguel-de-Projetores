@@ -1,0 +1,20 @@
+
+body{
+
+
+font-weight: bold;
+  color:black;
+  filter:grayscale(100%);
+}
+div{
+	color:black;
+	
+}
+
+p{
+	color:black;
+}
+#muda{
+	font-weight: bold;
+  	color:black;
+}

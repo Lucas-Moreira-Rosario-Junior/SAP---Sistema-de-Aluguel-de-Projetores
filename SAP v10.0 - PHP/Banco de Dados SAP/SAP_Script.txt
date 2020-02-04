@@ -1,0 +1,99 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+
+CREATE SCHEMA IF NOT EXISTS `SAP` DEFAULT CHARACTER SET utf8 ;
+
+USE `SAP` ;
+
+CREATE TABLE IF NOT EXISTS `SAP`.`Professor` (
+  `MatriculaProfessor` VARCHAR(50) NOT NULL,
+  `nomeProfessor` VARCHAR(100) NOT NULL,
+  `telefoneProfessor` VARCHAR(45) NULL,
+  `emailProfessor` VARCHAR(50) NOT NULL,
+  `senhaProfessor` VARCHAR(45) NOT NULL,
+  `departamento` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`MatriculaProfessor`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `SAP`.`Projetor` (
+  `idProjetor` INT NOT NULL,
+  `Tombo` VARCHAR(45) NOT NULL,
+  `Descricao` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idProjetor`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `SAP`.`Funcionario` (
+  `MatriculaFuncionario` VARCHAR(50) NOT NULL,
+  `nomeFuncionario` VARCHAR(105) NOT NULL,
+  `emailFuncionario` VARCHAR(60) NOT NULL,
+  `senhaFuncionario` VARCHAR(50) NOT NULL,
+  `telefoneFuncionario` VARCHAR(30) NULL,
+  PRIMARY KEY (`MatriculaFuncionario`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `SAP`.`Gerente` (
+  `MatriculaGerente` VARCHAR(50) NOT NULL,
+  `nomeGerente` VARCHAR(105) NOT NULL,
+  `telefoneGerente` VARCHAR(35) NULL,
+  `senhaGerente` VARCHAR(20) NOT NULL,
+  `emailGerente` VARCHAR(65) NOT NULL,
+  PRIMARY KEY (`MatriculaGerente`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `SAP`.`Servidor` (
+  `MatriculaServidor` VARCHAR(50) NOT NULL,
+  `nomeServidor` VARCHAR(105) NOT NULL,
+  `telefoneServidor` VARCHAR(35) NOT NULL,
+  `senhaServidor` VARCHAR(25) NOT NULL,
+  `emailServidor` VARCHAR(65) NOT NULL,
+  `setorServidor` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`MatriculaServidor`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `SAP`.`alugarEdevolver` (
+  `idAluguel` INT NOT NULL AUTO_INCREMENT,
+  `Funcionario_MatriculaFuncionario` VARCHAR(50) NOT NULL,
+  `Projetor_idProjetor` INT NOT NULL,
+  `Professor_MatriculaProfessor` VARCHAR(50) NOT NULL,
+  `horarioRetirar` TIME NOT NULL,
+  `horarioDevolver` TIME NOT NULL,
+  `Servidor_MatriculaServidor` VARCHAR(50) NOT NULL,
+  `Gerente_MatriculaGerente` VARCHAR(50) NOT NULL,
+  `dataAluguel` DATE NOT NULL,
+  PRIMARY KEY (`idAluguel`),
+  CONSTRAINT fk_Funcionario_MatriculaFuncionario FOREIGN KEY (Funcionario_MatriculaFuncionario) REFERENCES Funcionario (MatriculaFuncionario),
+  CONSTRAINT fk_Projetor_idProjetor FOREIGN KEY (Projetor_idProjetor) REFERENCES Projetor (idProjetor),
+  CONSTRAINT fk_Professor_MatriculaProfessor FOREIGN KEY (Professor_MatriculaProfessor) REFERENCES Professor (MatriculaProfessor),
+  CONSTRAINT fk_Servidor_MatriculaServidor FOREIGN KEY (Servidor_MatriculaServidor) REFERENCES Servidor (MatriculaServidor),
+  CONSTRAINT fk_Gerente_MatriculaGerente FOREIGN KEY (Gerente_MatriculaGerente) REFERENCES Gerente (MatriculaGerente)
+  
+);
+
+CREATE TABLE IF NOT EXISTS `SAP`.`Reservar` (
+  `idReservar` INT NOT NULL AUTO_INCREMENT,
+  `horarioRetirarRes` TIME NOT NULL,
+  `horarioDevolverRes` TIME NOT NULL,
+  `dataReserva` DATE NOT NULL,
+  `Funcionario_MatriculaFuncionario` VARCHAR(50) NOT NULL,
+  `Gerente_MatriculaGerente` VARCHAR(50) NOT NULL,
+  `Servidor_MatriculaServidor` VARCHAR(50) NOT NULL,
+  `Projetor_idProjetor` INT NOT NULL,
+  `Professor_MatriculaProfessor` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`idReservar`),
+  CONSTRAINT fk_Funcionario_MatriculaFuncionario2 FOREIGN KEY (Funcionario_MatriculaFuncionario) REFERENCES Funcionario (MatriculaFuncionario),
+  CONSTRAINT fk_Projetor_idProjetor2 FOREIGN KEY (Projetor_idProjetor) REFERENCES Projetor (idProjetor),
+  CONSTRAINT fk_Professor_MatriculaProfessor2 FOREIGN KEY (Professor_MatriculaProfessor) REFERENCES Professor (MatriculaProfessor),
+  CONSTRAINT fk_Servidor_MatriculaServidor2 FOREIGN KEY (Servidor_MatriculaServidor) REFERENCES Servidor (MatriculaServidor),
+  CONSTRAINT fk_Gerente_MatriculaGerente2 FOREIGN KEY (Gerente_MatriculaGerente) REFERENCES Gerente (MatriculaGerente)
+  );
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

@@ -1,0 +1,9 @@
+/* The Guff */
+
+
+/* The only bit you need */
+.highcontrast {
+  background-color: gray;
+  color: white;
+  a, a:visited { color: white;  }
+}
